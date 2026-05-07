@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>$(ClassLibraryTargetFrameworks)</TargetFrameworks>
+    <Optimize>true</Optimize>
+    <AssemblyName>NumaScheduler</AssemblyName>
+    <RootNamespace>NumaScheduler</RootNamespace>
+  </PropertyGroup>
+
+  <!-- NuGet package metadata -->
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>NumaScheduler</PackageId>
+    <Title>NumaScheduler — NUMA-Aware Task Scheduler</Title>
+    <Description>
+      A cross-platform .NET TaskScheduler that pins worker threads to NUMA nodes,
+      keeping task execution and memory access local to the same CPU socket.
+      Supports Windows (SetThreadGroupAffinity / kernel32), Linux (sched_setaffinity / sysfs),
+      and falls back gracefully on macOS and other platforms.
+      Three built-in scheduling policies: RoundRobin, LocalityFirst, and LeastLoaded.
+    </Description>
+    <Authors>Zoltan Csizmadia</Authors>
+    <Copyright>Copyright © 2026 Zoltan Csizmadia</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/zcsizmadia/NumaScheduler</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zcsizmadia/NumaScheduler</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>numa;task-scheduler;threading;performance;affinity;linux;windows;tpl</PackageTags>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
